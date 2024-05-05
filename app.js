@@ -26,6 +26,9 @@ app.post("/", (req, res) => {
     case 9:
       res.json(addon.ninth_task(req.body.input));
       break;
+    case 12:
+      res.json(addon.twelfth_task(req.body.input));
+      break;
   }
 });
 
@@ -41,6 +44,43 @@ app.post("/5", (req, res) => {
   res.json(addon.fifth_task(req.body.func, req.body.first, req.body.second));
 });
 
+app.post("/6", (req, res) => {
+  res.json(addon.sixth_task(req.body.func, req.body.input));
+});
+
+app.post("/7", (req, res) => {
+  res.json(addon.seventh_task(req.body.func, req.body.input));
+});
+
+app.post("/10", (req, res) => {
+  let str = "";
+  for (let i = 1; i <= 5; i++) {
+    let s = i + "";
+    if (req.body.input.includes(s)) {
+      str += "1";
+    } else {
+      str += "0";
+    }
+  }
+  res.json(addon.tenth_task(req.body.func, str));
+});
+
+app.post("/11", (req, res) => {
+  let str = "";
+  for (let i = 1; i <= 5; i++) {
+    let s = i + "";
+    if (req.body.input.includes(s)) {
+      str += "1";
+    } else {
+      str += "0";
+    }
+  }
+
+  let str2 = req.body.func1 + " " + req.body.func2 + " " + req.body.func3;
+
+  res.json(addon.eleventh_task(str2, str));
+});
+
 const start = () => {
   try {
     app.listen(port, () => console.log(`port: ${port}`));
@@ -51,5 +91,6 @@ const start = () => {
 
 start();
 
+
 // const addon = require('./build/Release/addon');
-// console.log(addon.fourth_task("Нулевая", "0001"));
+// console.log(addon.eleventh_task("1010 1010 1010", "00001"));
